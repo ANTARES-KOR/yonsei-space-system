@@ -1,10 +1,11 @@
 import type { Browser } from "puppeteer";
-import { BuildingName, BuildingNumber, URLs } from "../constants";
+import { BuildingName, BuildingNo, RoomNo, URLs } from "../constants";
 import { format } from "date-fns";
 
 interface ReservationScraperProps {
   date: Date;
   building: BuildingName;
+  room: string;
 }
 
 class ReservationScraper {
@@ -15,7 +16,7 @@ class ReservationScraper {
     this.browser = browser;
   }
 
-  scrape = async ({ date, building }: ReservationScraperProps) => {
+  scrape = async ({ date, building, room }: ReservationScraperProps) => {
     const page = await this.browser.newPage();
     await page.goto(this._url);
 
@@ -27,18 +28,43 @@ class ReservationScraper {
       format(date, "yyyy-MM-dd")
     );
 
-    // 제4공학관 선택하기
-    await page.select("#uBuilding", BuildingNumber[building].toString());
+    // select building
+    await page.select("#uBuilding", BuildingNo[building].toString());
 
-    // 조회하기 버튼 클릭
+    // click search btn
     await page.click("#ys_usersearch > form > a.button.icon.search");
 
-    // 제4공학관 Response 가져오기
+    // select room
+    const room_no = RoomNo[building][room];
+    if (!room_no) throw new Error(`${building} ${room} is not defined`);
+    const roomSelector = `#ys_roomlist > form > table > tbody > tr > td:nth-child(1) > input[value="${room_no}"]`;
+    await page.waitForSelector(roomSelector);
+    await page.click(roomSelector);
+
+    // wait for page load & booking status to appear.
+    await page.waitForSelector("#ys_timetable");
     await page.waitForResponse((res) => res.url().includes("act=bookingstatus") && res.ok());
 
+    // take screenshot of the page
     await page.screenshot({
-      path: `./screenshots/reservation_${building}_${format(date, "yyyy-MM-dd")}.png`,
+      path: `./screenshots/reservation-${building}-${room}-${format(date, "yyyyMMdd")}.png`,
     });
+
+    // get room reservation info
+    const reservations = await page.$$eval(".fc-event", (els) =>
+      els.map((el) => {
+        const duration = el.querySelector(".fc-event-time")?.textContent;
+        const event_name = el.querySelector(".fc-event-title")?.textContent;
+        return { event_name, duration };
+      })
+    );
+
+    return {
+      room,
+      building,
+      date: format(date, "yyyy-MM-dd"),
+      reservations,
+    };
   };
 }
 
