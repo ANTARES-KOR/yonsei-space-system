@@ -1,6 +1,7 @@
 import type { Browser } from "puppeteer";
 import { BuildingName, BuildingNo, RoomNo, URLs } from "../constants";
 import { format } from "date-fns";
+import fs from "fs";
 
 interface ReservationScraperProps {
   date: Date;
@@ -45,7 +46,7 @@ class ReservationScraper {
     await page.waitForSelector("#ys_timetable");
     await page.waitForResponse((res) => res.url().includes("act=bookingstatus") && res.ok());
 
-    // take screenshot of the page
+    !fs.existsSync("screenshots") && fs.mkdirSync("screenshots");
     await page.screenshot({
       path: `./screenshots/reservation-${building}-${room}-${format(date, "yyyyMMdd")}.png`,
     });
