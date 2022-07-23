@@ -10,8 +10,9 @@
   "author": "ANTARES_SEO",
   "license": "ISC",
   "dependencies": {
-    "puppeteer": "^15.5.0",
-    "dotenv": "^16.0.1"
+    "date-fns": "^2.29.1",
+    "dotenv": "^16.0.1",
+    "puppeteer": "^15.5.0"
   },
   "devDependencies": {
     "@types/node": "^18.0.6",
