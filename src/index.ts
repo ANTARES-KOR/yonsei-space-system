@@ -6,7 +6,7 @@ import { loginToYonseiSpaceSystem } from "./utils";
 const yonseiSpaceCrawler = async () => {
   try {
     const browser = await puppeteer.launch({
-      headless: false,
+      headless: true,
       defaultViewport: {
         width: 1920,
         height: 1080,
@@ -21,10 +21,13 @@ const yonseiSpaceCrawler = async () => {
 
     const resevationScraper = new ReservationScraper({ browser });
 
-    await resevationScraper.scrape({
-      building: "Engineering_1",
+    const roomReservationStatus = await resevationScraper.scrape({
       date: new Date("2022-08-06"),
+      building: "Engineering_4",
+      room: "D403",
     });
+
+    console.log(roomReservationStatus);
 
     await browser.close();
   } catch (e) {
