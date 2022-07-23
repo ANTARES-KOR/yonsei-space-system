@@ -18,3 +18,7 @@ export const RoomNumber: Record<BuildingName, Record<string, RoomUID>> = {
     D504: "14159",
   },
 };
+
+export const URLs = {
+  reservation: "https://space.yonsei.ac.kr/reservation.php?mid=K02",
+};

@@ -1,4 +1,5 @@
 import type { Browser } from "puppeteer";
+import { URLs } from "../constants";
 
 interface ReservationScraperProps {
   browser: Browser;
@@ -6,7 +7,7 @@ interface ReservationScraperProps {
 }
 
 class ReservationScraper {
-  private url = "https://space.yonsei.ac.kr/reservation.php?mid=K02";
+  private url = URLs.reservation;
 
   scrape = async ({ browser }: ReservationScraperProps) => {
     const page = await browser.newPage();
@@ -29,3 +30,5 @@ class ReservationScraper {
     await page.screenshot({ path: "./img/engineer4.png" });
   };
 }
+
+export default ReservationScraper;
