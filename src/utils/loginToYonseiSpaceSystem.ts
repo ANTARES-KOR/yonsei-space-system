@@ -1,4 +1,5 @@
 import type { Browser } from "puppeteer";
+import { URLs } from "../constants";
 
 interface LoginUserProps {
   id: string;
@@ -9,7 +10,7 @@ interface LoginUserProps {
 const loginToYonseiSpaceSystem = async ({ browser, id, pw }: LoginUserProps) => {
   const page = await browser.newPage();
 
-  await page.goto("https://space.yonsei.ac.kr/");
+  await page.goto(URLs.home);
   await page.waitForSelector("input#ysid.solid", {
     visible: true,
     timeout: 10000,

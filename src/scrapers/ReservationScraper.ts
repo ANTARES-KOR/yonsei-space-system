@@ -1,33 +1,44 @@
 import type { Browser } from "puppeteer";
-import { URLs } from "../constants";
+import { BuildingName, BuildingNumber, URLs } from "../constants";
+import { format } from "date-fns";
 
 interface ReservationScraperProps {
-  browser: Browser;
-  reservationDate: string;
+  date: Date;
+  building: BuildingName;
 }
 
 class ReservationScraper {
-  private url = URLs.reservation;
+  private _url = URLs.reservation;
+  private browser: Browser;
 
-  scrape = async ({ browser }: ReservationScraperProps) => {
-    const page = await browser.newPage();
-    await page.goto(this.url);
+  constructor({ browser }: { browser: Browser }) {
+    this.browser = browser;
+  }
+
+  scrape = async ({ date, building }: ReservationScraperProps) => {
+    const page = await this.browser.newPage();
+    await page.goto(this._url);
 
     await page.waitForSelector("#ys_usersearch");
 
-    await page.$eval("#appDate", (el) => ((el as HTMLInputElement).value = "2022-08-06"));
+    await page.$eval(
+      "#appDate",
+      (el, reservation_date) => ((el as HTMLInputElement).value = reservation_date),
+      format(date, "yyyy-MM-dd")
+    );
 
     // 제4공학관 선택하기
-    await page.click("#uBuilding");
-    await page.waitForSelector("#uBuilding > option:nth-child(2)");
-    await page.select("#uBuilding", "124");
+    await page.select("#uBuilding", BuildingNumber[building].toString());
 
     // 조회하기 버튼 클릭
     await page.click("#ys_usersearch > form > a.button.icon.search");
 
-    // 제4공학관 조회 결과 확인
+    // 제4공학관 Response 가져오기
     await page.waitForResponse((res) => res.url().includes("act=bookingstatus") && res.ok());
-    await page.screenshot({ path: "./img/engineer4.png" });
+
+    await page.screenshot({
+      path: `./screenshots/reservation_${building}_${format(date, "yyyy-MM-dd")}.png`,
+    });
   };
 }
 
