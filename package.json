@@ -3,13 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "description": "",
-  "workspaces": [
-    "electron",
-    "frontend",
-    "puppeteer"
-  ],
   "scripts": {
-    "lint-staged": "lint-staged"
+    "lint-staged": "lint-staged",
+    "dev": "./scripts/run-dev.sh"
   },
   "lint-staged": {
     "frontend/src/**/*.ts": [
