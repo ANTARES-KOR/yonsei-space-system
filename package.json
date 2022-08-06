@@ -1,0 +1,14 @@
+{
+  "name": "yonsei-space-scraper",
+  "version": "0.0.0",
+  "description": "",
+  "workspaces": [
+    "electron",
+    "frontend",
+    "puppeteer"
+  ],
+  "scripts": {},
+  "keywords": [],
+  "author": "ANTARES_SEO, eunddodi",
+  "license": "ISC"
+}

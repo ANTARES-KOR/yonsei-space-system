@@ -1,5 +1,5 @@
 {
-  "name": "YONSEI-space-system scraper",
+  "name": "@yonsei-space-scraper/scraper",
   "version": "1.0.0",
   "description": "Yonsei Space System Scraper for YBIGTA",
   "main": "./src/index.ts",
