@@ -1,5 +1,5 @@
 {
-  "name": "electron",
+  "name": "@yonsei-space-scraper/desktop",
   "version": "1.0.0",
   "description": "electron application for space system",
   "main": "index.js",
@@ -10,7 +10,8 @@
   "author": "ANTARES_SEO",
   "license": "ISC",
   "dependencies": {
-    "@yonsei-space-scraper/frontend": "workspace:*"
+    "@yonsei-space-scraper/frontend": "workspace:*",
+    "@yonsei-space-scraper/scraper": "workspace:*"
   },
   "devDependencies": {
     "electron": "^19.0.10"

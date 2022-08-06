@@ -8,9 +8,12 @@ importers:
   electron:
     specifiers:
       '@yonsei-space-scraper/frontend': workspace:*
+      '@yonsei-space-scraper/scraper': workspace:*
       electron: ^19.0.10
-    devDependencies:
+    dependencies:
       '@yonsei-space-scraper/frontend': link:../frontend
+      '@yonsei-space-scraper/scraper': link:../puppeteer
+    devDependencies:
       electron: 19.0.11
 
   frontend:
