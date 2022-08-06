@@ -1,14 +1,32 @@
 {
   "name": "yonsei-space-scraper",
   "version": "0.0.0",
+  "private": true,
   "description": "",
   "workspaces": [
     "electron",
     "frontend",
     "puppeteer"
   ],
-  "scripts": {},
+  "scripts": {
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "frontend/src/**/*.ts": [
+      "prettier --write",
+      "eslint --fix",
+      "git add"
+    ],
+    "frontend/src/**/*.tsx": [
+      "prettier --write",
+      "eslint --fix",
+      "git add"
+    ]
+  },
   "keywords": [],
   "author": "ANTARES_SEO, eunddodi",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "lint-staged": "^13.0.3"
+  }
 }
