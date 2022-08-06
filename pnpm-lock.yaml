@@ -7,8 +7,10 @@ importers:
 
   electron:
     specifiers:
+      '@yonsei-space-scraper/frontend': workspace:*
       electron: ^19.0.10
     devDependencies:
+      '@yonsei-space-scraper/frontend': link:../frontend
       electron: 19.0.11
 
   frontend:

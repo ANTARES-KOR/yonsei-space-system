@@ -9,6 +9,9 @@
   "keywords": [],
   "author": "ANTARES_SEO",
   "license": "ISC",
+  "dependencies": {
+    "@yonsei-space-scraper/frontend": "workspace:*"
+  },
   "devDependencies": {
     "electron": "^19.0.10"
   }
