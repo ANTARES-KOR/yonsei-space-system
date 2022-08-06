@@ -9,7 +9,7 @@
     "puppeteer"
   ],
   "scripts": {
-    "precommit": "lint-staged"
+    "lint-staged": "lint-staged"
   },
   "lint-staged": {
     "frontend/src/**/*.ts": [
@@ -27,6 +27,7 @@
   "author": "ANTARES_SEO, eunddodi",
   "license": "ISC",
   "devDependencies": {
+    "husky": "^8.0.1",
     "lint-staged": "^13.0.3"
   }
 }
