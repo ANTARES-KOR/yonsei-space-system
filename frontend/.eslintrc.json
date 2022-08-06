@@ -22,12 +22,7 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": [
-    "react",
-    "@typescript-eslint",
-    "import",
-    "plugin:react-hooks/recommended"
-  ],
+  "plugins": ["react", "@typescript-eslint", "import", "react-hooks"],
   "rules": {
     "react/jsx-filename-extension": [
       2,
