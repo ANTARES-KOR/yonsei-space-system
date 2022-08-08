@@ -1,8 +1,14 @@
 import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import MainPage from './pages/Main/MainPage';
+import LoginPage from './pages/Login/LoginPage';
 
 function App() {
   return (
-    <div className="App">연세대학교 공간대관시스템 스크래퍼입니다!!!!!!!</div>
+    <Routes>
+      <Route path="/" element={<MainPage />} />
+      <Route path="login" element={<LoginPage />} />
+    </Routes>
   );
 }
 
