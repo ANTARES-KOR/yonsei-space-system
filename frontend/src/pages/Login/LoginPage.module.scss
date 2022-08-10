@@ -1,6 +1,6 @@
 @import '../../index.module.scss';
 
-div {
+.container {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -16,8 +16,28 @@ form {
 
   input {
     height: 3.4rem;
-    margin-bottom: 3.4rem;
     border: solid 0.1rem $gray;
     border-radius: 0.2rem;
+    padding-left: 0.8rem;
+  }
+}
+
+h5 {
+  font-size: $font-small;
+  font-weight: $font-medium;
+  color: $darkgray;
+  width: 100%;
+  max-width: 320px;
+  margin: 0 0 3.4rem 0;
+}
+
+.error {
+  font-size: $font-small;
+  color: $main-color;
+  height: 3.4rem;
+  padding-top: 0.4rem;
+
+  &.hidden {
+    visibility: hidden;
   }
 }
