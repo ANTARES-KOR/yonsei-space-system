@@ -1,0 +1,42 @@
+/* color */
+$main-color: #1990fe;
+$gray: #dfe0e4;
+$lightgray: #f5f5f5;
+
+/* font-size */
+$font-large: 3.2rem;
+$font-medium: 2.8rem;
+$font-regular: 1.6rem;
+$font-small: 1.3rem;
+
+html {
+  /* set 1rem to 10px for convenience */
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 1.6rem;
+  margin: 0;
+  height: 100vh;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+button {
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+h1 {
+  font-size: $font-large;
+}
+
+h3 {
+  font-size: $font-medium;
+}
+
+p {
+  font-size: $font-regular;
+  margin-top: 0;
+}
