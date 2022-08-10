@@ -1,6 +1,7 @@
 /* color */
 $main-color: #1990fe;
 $gray: #dfe0e4;
+$darkgray: #909192;
 $lightgray: #f5f5f5;
 
 /* font-size */
@@ -9,17 +10,26 @@ $font-medium: 2.8rem;
 $font-regular: 1.6rem;
 $font-small: 1.3rem;
 
+/* font-weight */
+$font-regular: 400;
+$font-medium: 500;
+$font-bold: 700;
+
 html {
   /* set 1rem to 10px for convenience */
   font-size: 62.5%;
-  box-sizing: border-box;
 }
 
 body {
   font-size: 1.6rem;
-  margin: 0;
-  height: 100vh;
   font-family: 'Noto Sans KR', sans-serif;
+}
+
+html,
+body,
+body > div {
+  height: 100%;
+  margin: 0;
 }
 
 button {
@@ -30,13 +40,16 @@ button {
 
 h1 {
   font-size: $font-large;
+  margin: 1.6rem 0;
 }
 
 h3 {
   font-size: $font-medium;
+  margin: 0.8rem 0;
 }
 
 p {
   font-size: $font-regular;
   margin-top: 0;
+  margin: 0.4rem 0;
 }
