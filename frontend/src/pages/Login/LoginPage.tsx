@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import './LoginPage.module.scss';
+import Button from '../../components/Button';
 
 interface LoginForm {
   id: number;
@@ -10,7 +12,8 @@ interface LoginForm {
 function LoginPage() {
   const { register, handleSubmit } = useForm<LoginForm>();
   const onSubmit = (data: LoginForm) => {
-    // will be executed when submit event happens
+    // will be executed when submit event hap pens
+    console.log(data);
   };
 
   return (
@@ -24,7 +27,7 @@ function LoginPage() {
           placeholder="password"
           type="password"
         />
-        <input type="submit" />
+        <Button fullWidth>로그인</Button>
       </form>
       <Link to="/">Main</Link>
     </div>
