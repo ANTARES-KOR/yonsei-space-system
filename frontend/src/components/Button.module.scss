@@ -10,4 +10,12 @@
     width: 100%;
     justify-content: center;
   }
+
+  &:hover {
+    background: lighten($main-color, 10%);
+  }
+
+  &:active {
+    background: darken($main-color, 10%);
+  }
 }
