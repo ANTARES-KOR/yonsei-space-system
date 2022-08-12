@@ -29,6 +29,7 @@ function LoginPage() {
       <form onSubmit={handleSubmit(onSubmit)}>
         <input
           {...register('id', {
+            required: '아이디를 입력하세요.',
             pattern: {
               value: /[0-9]{10}/,
               message: '올바른 아이디를 입력하세요.',
