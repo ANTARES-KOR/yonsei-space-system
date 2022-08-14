@@ -1,21 +1,37 @@
 @import '../index.module';
 
+@mixin btn-color($color: $main-color) {
+  background: $color;
+  &:hover {
+    background: lighten($color, 10%);
+  }
+  &:active {
+    background: darken($color, 10%);
+  }
+}
+
 .Button {
-  background: $main-color;
   color: white;
   height: 3.4rem;
   border-radius: 0.2rem;
+  @include btn-color();
+
+  &.small {
+    width: 8rem;
+  }
+
+  &.medium {
+    width: 16rem;
+  }
 
   &.fullwidth {
     width: 100%;
     justify-content: center;
   }
 
-  &:hover {
-    background: lighten($main-color, 10%);
-  }
-
-  &:active {
-    background: darken($main-color, 10%);
+  &.outline {
+    @include btn-color(white);
+    border: solid 0.1rem $darkgray;
+    color: $black;
   }
 }
