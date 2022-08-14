@@ -1,0 +1,21 @@
+@import '../index.module';
+
+.Button {
+  background: $main-color;
+  color: white;
+  height: 3.4rem;
+  border-radius: 0.2rem;
+
+  &.fullwidth {
+    width: 100%;
+    justify-content: center;
+  }
+
+  &:hover {
+    background: lighten($main-color, 10%);
+  }
+
+  &:active {
+    background: darken($main-color, 10%);
+  }
+}
