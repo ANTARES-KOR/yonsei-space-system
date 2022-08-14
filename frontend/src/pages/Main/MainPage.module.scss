@@ -1,0 +1,13 @@
+@import '../../index.module';
+
+.container {
+  display: flex;
+  height: 100%;
+  ul {
+    flex-basis: 25%;
+  }
+  div {
+    flex-basis: 75%;
+    background: $lightgray;
+  }
+}

@@ -1,11 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import classNames from 'classnames/bind';
+import styles from './MainPage.module.scss';
+import Sidebar from '../../components/Sidebar';
+
+const cx = classNames.bind(styles);
 
 function MainPage() {
   return (
-    <div>
-      <h1>MainPage</h1>
-      <Link to="/login">Login</Link>
+    <div className={cx('container')}>
+      <Sidebar />
+      <div>컨텐츠 영역 입니당.</div>
     </div>
   );
 }
