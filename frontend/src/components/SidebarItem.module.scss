@@ -1,0 +1,36 @@
+@import '../index.module';
+
+li {
+  line-height: 6rem;
+  ul {
+    background: $lightgray;
+  }
+}
+
+button {
+  height: 6rem;
+  width: 100%;
+  background: transparent;
+  padding: 0 4rem 0 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &:hover {
+    color: $main-color;
+  }
+}
+
+.Building {
+  &.selected > button {
+    color: $main-color;
+  }
+}
+.Room {
+  &.selected {
+    background: $main-color-light;
+    button {
+      color: $main-color;
+      border-right: solid 0.3rem $main-color;
+    }
+  }
+}
