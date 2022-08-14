@@ -31,7 +31,7 @@ body {
 
 html,
 body,
-body > div {
+html body > div:first-child {
   height: 100%;
   margin: 0;
 }
