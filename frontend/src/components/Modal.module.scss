@@ -13,7 +13,7 @@
   background: white;
   width: 40%;
   min-width: 20rem;
-  height: 20rem;
+  height: 25rem;
   border-radius: 0.5rem;
   position: fixed;
   top: 50%;
@@ -25,6 +25,7 @@
 }
 
 .modal-header {
+  border-bottom: solid 0.1rem $gray;
 }
 
 .modal-content {
@@ -32,8 +33,10 @@
   flex-direction: column;
   justify-content: center;
   flex: 1;
+  border-bottom: solid 0.1rem $gray;
 }
 
 .modal-btns {
   text-align: right;
+  margin-top: 2rem;
 }

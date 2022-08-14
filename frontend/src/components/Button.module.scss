@@ -11,13 +11,13 @@
 }
 
 .Button {
-  color: white;
+  color: $white;
   height: 3.4rem;
   border-radius: 0.2rem;
   @include btn-color();
 
   &.small {
-    width: 8rem;
+    width: 10rem;
   }
 
   &.medium {
@@ -30,8 +30,8 @@
   }
 
   &.outline {
-    @include btn-color(white);
-    border: solid 0.1rem $darkgray;
+    @include btn-color($white);
+    border: solid 0.1rem $gray;
     color: $black;
   }
 }

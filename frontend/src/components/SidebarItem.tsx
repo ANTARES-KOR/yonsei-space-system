@@ -39,7 +39,11 @@ function SidebarItem({ label, children }: Props) {
         { selected: isSelected() },
       )}
     >
-      <button onClick={children ? openSubMenu : selectClassroom} type="button">
+      <button
+        onClick={children ? openSubMenu : selectClassroom}
+        type="button"
+        className={cx('sidebar-item')}
+      >
         {label}
         {children && (open ? <AiOutlineUp /> : <AiOutlineDown />)}
       </button>
