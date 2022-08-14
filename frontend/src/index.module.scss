@@ -2,6 +2,7 @@
 $main-color: #1990fe;
 $main-color-light: #0084ff13;
 $white: #ffffff;
+$black: #222222;
 $gray: #dfe0e4;
 $darkgray: #909192;
 $lightgray: #f5f5f5;
@@ -25,6 +26,7 @@ html {
 body {
   font-size: 1.6rem;
   font-family: 'Noto Sans KR', sans-serif;
+  color: $black;
 }
 
 html,
