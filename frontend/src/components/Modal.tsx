@@ -16,20 +16,19 @@ interface ModalProps {
 function Modal({ title, children, closeModal }: ModalProps) {
   return (
     <ModalPortal>
-      <div className={cx('modal-overlay')}>
-        <div className={cx('modal-container')}>
-          <div className={cx('modal-header')}>
-            <h3>{title}</h3>
-            <button onClick={closeModal} type="button">
-              <AiOutlineClose />
-            </button>
-          </div>
-          <div className={cx('modal-content')}>{children}</div>
-          <div className={cx('modal-btns')}>
-            <Button label="취소" onClick={closeModal} size="small" outline />
-            <Button label="확인" onClick={closeModal} size="small" />
-          </div>
-        </div>
+      <div className={cx('modal-overlay')} />
+      <div className={cx('modal-container')}>
+        <header>
+          <h3>{title}</h3>
+          <button onClick={closeModal} type="button">
+            <AiOutlineClose />
+          </button>
+        </header>
+        <main>{children}</main>
+        <section>
+          <Button label="취소" onClick={closeModal} size="small" outline />
+          <Button label="확인" onClick={closeModal} size="small" />
+        </section>
       </div>
     </ModalPortal>
   );

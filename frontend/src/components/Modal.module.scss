@@ -10,9 +10,8 @@
 }
 
 .modal-container {
-  background: white;
-  width: 40%;
-  min-width: 20rem;
+  background: $white;
+  width: 40rem;
   height: 25rem;
   border-radius: 0.5rem;
   position: fixed;
@@ -24,7 +23,7 @@
   padding: 2rem;
 }
 
-.modal-header {
+header {
   border-bottom: solid 0.1rem $gray;
   display: flex;
   justify-content: space-between;
@@ -35,7 +34,7 @@
   }
 }
 
-.modal-content {
+main {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -43,7 +42,7 @@
   border-bottom: solid 0.1rem $gray;
 }
 
-.modal-btns {
+section {
   text-align: right;
   margin-top: 2rem;
 }
