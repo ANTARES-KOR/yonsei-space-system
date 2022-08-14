@@ -1,9 +1,5 @@
 import React from 'react';
-import classNames from 'classnames/bind';
-import styles from './Sidebar.module.scss';
 import SidebarItem from './SidebarItem';
-
-const cx = classNames.bind(styles);
 
 interface ItemContent {
   building: string;
@@ -16,7 +12,7 @@ const items: ItemContent[] = [
 
 function Sidebar() {
   return (
-    <ul className={cx('container')}>
+    <ul>
       {items.map((item) => (
         <SidebarItem label={item.building} key={item.building}>
           {item.rooms}
