@@ -26,6 +26,13 @@
 
 .modal-header {
   border-bottom: solid 0.1rem $gray;
+  display: flex;
+  justify-content: space-between;
+  button {
+    background: transparent;
+    font-size: $font-small;
+    color: $darkgray;
+  }
 }
 
 .modal-content {

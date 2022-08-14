@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react';
 import classNames from 'classnames/bind';
+import { AiOutlineClose } from 'react-icons/ai';
 import styles from './Modal.module.scss';
 import ModalPortal from './ModalPortal';
 import Button from './Button';
@@ -19,6 +20,9 @@ function Modal({ title, children, closeModal }: ModalProps) {
         <div className={cx('modal-container')}>
           <div className={cx('modal-header')}>
             <h3>{title}</h3>
+            <button onClick={closeModal} type="button">
+              <AiOutlineClose />
+            </button>
           </div>
           <div className={cx('modal-content')}>{children}</div>
           <div className={cx('modal-btns')}>
