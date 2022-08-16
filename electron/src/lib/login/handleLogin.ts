@@ -1,6 +1,5 @@
 import puppeteer from "puppeteer";
 import loginToYonseiSpaceSystem from "./loginToYonseiSpaceSystem";
-import { YONSEI_STUDENT_ID, YONSEI_STUDENT_PW } from "../../core/config";
 
 export const handleLogin = async (id: string, pw: string) => {
   try {
