@@ -1,4 +1,4 @@
-import { Page } from "puppeteer";
+import type { Page } from "puppeteer";
 
 const windowSet = (page: Page, name: string, value: string | number) => {
   page.evaluateOnNewDocument(`

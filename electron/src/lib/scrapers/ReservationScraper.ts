@@ -1,5 +1,5 @@
 import type { Browser } from "puppeteer";
-import { BuildingName, BuildingNo, RoomNo, URLs } from "../constants";
+import { BuildingName, BuildingNo, RoomNo, URLs } from "../../core/constants";
 import { format } from "date-fns";
 import fs from "fs";
 

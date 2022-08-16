@@ -1,5 +1,6 @@
 import type { Browser } from "puppeteer";
-import { URLs } from "../constants";
+import { URLs } from "../../core/constants";
+import fs from "fs";
 
 interface LoginUserProps {
   id: string;
@@ -33,9 +34,16 @@ const loginToYonseiSpaceSystem = async ({ browser, id, pw }: LoginUserProps) => 
   );
 
   await page.click("img#ysloginbtn");
-  await page.waitForSelector("#ys_memberarea", {
-    timeout: 10000,
-  });
+  try {
+    await page.waitForSelector("#ys_memberarea", {
+      timeout: 5000,
+    });
+  } catch (e) {
+    throw new Error(`wrong id or password`);
+  }
+
+  !fs.existsSync("screenshots") && fs.mkdirSync("screenshots");
+  await page.screenshot({ path: "./screenshots/login.png" });
 };
 
 export default loginToYonseiSpaceSystem;
