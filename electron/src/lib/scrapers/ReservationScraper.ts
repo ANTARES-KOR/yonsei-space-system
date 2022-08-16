@@ -1,4 +1,4 @@
-import type { Browser } from "puppeteer-core";
+import type { Browser } from "puppeteer";
 import { BuildingName, BuildingNo, RoomNo, URLs } from "../../core/constants";
 import { format } from "date-fns";
 import fs from "fs";
