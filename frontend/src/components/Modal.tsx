@@ -4,6 +4,7 @@ import { AiOutlineClose } from 'react-icons/ai';
 import styles from './Modal.module.scss';
 import Portal from './Portal';
 import Button from './Button';
+import Overlay from './Overlay';
 
 const cx = classNames.bind(styles);
 
@@ -16,7 +17,7 @@ interface ModalProps {
 function Modal({ title, children, closeModal }: ModalProps) {
   return (
     <Portal portalNodeId="modal">
-      <div className={cx('modal-overlay')} />
+      <Overlay />
       <div className={cx('modal-container')}>
         <header>
           <h3>{title}</h3>
