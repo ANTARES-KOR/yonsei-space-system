@@ -4,21 +4,21 @@ import styles from './Button.module.scss';
 
 interface Props {
   label: string;
+  color?: 'white' | 'gray';
+  size?: string;
   fullWidth?: boolean;
   outline?: boolean;
-  color?: string;
-  size?: string;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 const cx = classNames.bind(styles);
 
-function Button({ label, fullWidth, outline, color, size, onClick }: Props) {
+function Button({ label, color, size, fullWidth, outline, onClick }: Props) {
   return (
     <button
-      type="submit"
+      type={onClick ? 'button' : 'submit'}
       onClick={onClick}
-      className={cx('Button', { fullWidth }, { outline }, color, size)}
+      className={cx('Button', color, size, { fullWidth }, { outline })}
     >
       {label}
     </button>
@@ -26,10 +26,3 @@ function Button({ label, fullWidth, outline, color, size, onClick }: Props) {
 }
 
 export default Button;
-
-Button.defaultProps = {
-  fullWidth: false,
-  outline: false,
-  size: 'medium',
-  color: null,
-};

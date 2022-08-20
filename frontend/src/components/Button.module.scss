@@ -11,27 +11,32 @@
 }
 
 .Button {
+  @include btn-color();
   color: $white;
   height: 3.4rem;
   border-radius: 0.2rem;
-  @include btn-color();
 
+  /* color options */
+  &.white {
+    @include btn-color($white);
+    color: $black;
+    border: solid 0.1rem $gray;
+  }
+  &.gray {
+    @include btn-color($lightgray);
+    color: $darkgray;
+  }
+
+  /* size options */
   &.small {
     width: 10rem;
   }
-
   &.medium {
     width: 16rem;
   }
 
-  &.fullwidth {
+  /* etc */
+  &.fullWidth {
     width: 100%;
-    justify-content: center;
-  }
-
-  &.outline {
-    @include btn-color($white);
-    border: solid 0.1rem $gray;
-    color: $black;
   }
 }
