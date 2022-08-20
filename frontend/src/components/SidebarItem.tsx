@@ -59,7 +59,3 @@ function SidebarItem({ label, children }: Props) {
 }
 
 export default SidebarItem;
-
-SidebarItem.defaultProps = {
-  children: null,
-};
