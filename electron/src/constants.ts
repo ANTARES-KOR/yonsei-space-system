@@ -1,14 +1,15 @@
-export type BuildingName = "Engineering_1" | "Engineering_4";
-
 export type RoomUID = number;
 
-export const BuildingNo: Record<BuildingName, number> = {
+export const BuildingNo: Record<string, number> = {
   Engineering_1: 102,
   Engineering_4: 124,
 };
 
-export const RoomNo: Record<BuildingName, Record<string, RoomUID>> = {
+export type BuildingName = keyof typeof BuildingNo;
+
+export const RoomNo: Record<keyof typeof BuildingNo, Record<string, RoomUID>> = {
   Engineering_1: {
+    A320: 555,
     A546: 704,
   },
   Engineering_4: {
@@ -18,12 +19,6 @@ export const RoomNo: Record<BuildingName, Record<string, RoomUID>> = {
     D504: 14159,
   },
 };
-
-interface ReservationPopupURLProps {
-  room_uid: string;
-  start_time: Date;
-  end_time: Date;
-}
 
 export const URLs = {
   home: "https://space.yonsei.ac.kr/",

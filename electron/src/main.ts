@@ -1,7 +1,7 @@
 // Modules to control application life and create native browser window
 import { app, BrowserWindow, ipcMain } from "electron";
 import path from "path";
-import { handleLogin } from "./lib/login/handleLogin";
+import { YonseiSpaceSystem } from "./module/YonseiSpaceSystem";
 
 function createWindow() {
   // Create the browser window.
@@ -13,18 +13,26 @@ function createWindow() {
     },
   });
 
-  // and load the index.html of the app.
   mainWindow.loadURL("http://127.0.0.1:5173/login");
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
 }
 
 app.whenReady().then(async () => {
+  const yonseiSpaceSystem = new YonseiSpaceSystem();
+  await yonseiSpaceSystem.init();
+
   createWindow();
 
   ipcMain.handle("login", async (event, ...args) => {
     const [id, pw] = args;
-    const result = await handleLogin(id, pw);
+    const result = await yonseiSpaceSystem.login(id, pw);
+    return result;
+  });
+
+  ipcMain.handle("getRoomReservations", async (event, ...args) => {
+    const [building, room] = args;
+    const result = await yonseiSpaceSystem.getRoomReservations(building, room);
     return result;
   });
 

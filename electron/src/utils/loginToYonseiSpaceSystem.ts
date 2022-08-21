@@ -1,5 +1,5 @@
 import type { Browser } from "puppeteer";
-import { URLs } from "../../core/constants";
+import { URLs } from "../constants";
 import fs from "fs";
 
 interface LoginUserProps {
