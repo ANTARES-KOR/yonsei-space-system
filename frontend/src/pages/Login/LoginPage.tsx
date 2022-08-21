@@ -48,7 +48,7 @@ function LoginPage() {
         <div className={cx('error', { hidden: !errors.password })}>
           {errors.password?.message}
         </div>
-        <Button fullWidth>로그인</Button>
+        <Button label="로그인" fullWidth />
       </form>
     </div>
   );

@@ -1,24 +1,28 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import classNames from 'classnames/bind';
 import styles from './Button.module.scss';
 
 interface Props {
-  children: ReactNode;
+  label: string;
+  color?: 'white' | 'gray';
+  size?: string;
   fullWidth?: boolean;
+  outline?: boolean;
+  onClick?: () => void;
 }
 
 const cx = classNames.bind(styles);
 
-function Button({ children, fullWidth }: Props) {
+function Button({ label, color, size, fullWidth, outline, onClick }: Props) {
   return (
-    <button type="submit" className={cx('Button', fullWidth && 'fullWidth')}>
-      {children}
+    <button
+      type={onClick ? 'button' : 'submit'}
+      onClick={onClick}
+      className={cx('Button', color, size, { fullWidth }, { outline })}
+    >
+      {label}
     </button>
   );
 }
 
 export default Button;
-
-Button.defaultProps = {
-  fullWidth: false,
-};
