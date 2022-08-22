@@ -40,4 +40,8 @@ h5 {
   &.hidden {
     visibility: hidden;
   }
+
+  &.red {
+    color: $red;
+  }
 }
