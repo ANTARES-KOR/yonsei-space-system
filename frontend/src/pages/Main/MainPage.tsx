@@ -6,6 +6,7 @@ import Sidebar from '../../components/Sidebar';
 import Modal from '../../components/Modal';
 import Button from '../../components/Button';
 import useCheckLogin from '../../hooks/useCheckLogin';
+import Table from '../../components/Table';
 
 const cx = classNames.bind(styles);
 
@@ -21,7 +22,7 @@ function MainPage() {
     <div className={cx('container')}>
       <Sidebar />
       <div>
-        컨텐츠 영역 입니당.
+        <Table />
         <Button label="예약하기" onClick={toggleModal} />
         <Link to="/login">login</Link>
       </div>
