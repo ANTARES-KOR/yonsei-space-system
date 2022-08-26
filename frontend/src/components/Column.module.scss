@@ -5,7 +5,6 @@ $single-row-width: 18rem;
 
 .column {
   width: $single-row-width;
-  border-right: solid 0.1rem $darkgray;
   &.label-column {
     width: calc($single-row-width/2);
   }
@@ -18,5 +17,5 @@ $single-row-width: 18rem;
 .column-header,
 .column-row {
   height: calc($single-row-height * 3);
-  border-bottom: solid 1px $gray;
+  outline: solid 0.05rem $gray;
 }

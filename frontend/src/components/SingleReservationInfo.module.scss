@@ -1,0 +1,16 @@
+@import '../index.module.scss';
+
+.container {
+  position: absolute;
+  left: 0.3rem;
+  width: 17rem;
+  border-radius: 0.5rem;
+  font-size: $font-small;
+  background-color: $gray;
+}
+
+.header,
+.content {
+  padding-top: 0.5rem;
+  padding-left: 0.2rem;
+}
