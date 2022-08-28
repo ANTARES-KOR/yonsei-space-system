@@ -11,7 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "@yonsei-space-scraper/frontend": "workspace:*",
-    "date-fns": "^2.29.1"
+    "date-fns": "^2.29.1",
+    "radash": "^7.0.0"
   },
   "devDependencies": {
     "dotenv": "^16.0.1",

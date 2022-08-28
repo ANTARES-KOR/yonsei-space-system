@@ -24,4 +24,5 @@ export const URLs = {
   home: "https://space.yonsei.ac.kr/",
   reservation: "https://space.yonsei.ac.kr/reservation.php?mid=K02",
   popupForm: "https://space.yonsei.ac.kr/ys_popform.php",
+  weeklyReservation: "https://space.yonsei.ac.kr/index.php?mid=K06&lang=k",
 };
