@@ -1,25 +1,37 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import classNames from 'classnames/bind';
+import { useRecoilState } from 'recoil';
+import { isLoginCompletedState } from '../../atom';
+import { LoginForm } from '../../interfaces';
 import styles from './LoginPage.module.scss';
 import Button from '../../components/Button';
 import Loading from '../../components/Loading';
 import YSSAPi from '../../apis/index';
-import { LoginForm } from '../../interfaces';
 
 const cx = classNames.bind(styles);
 
 function LoginPage() {
   const [isLoginFailed, setIsLoginFailed] = useState<boolean | null>(null);
+  const [isLoginComplete, setIsLoginCompleted] = useRecoilState(
+    isLoginCompletedState,
+  );
   const navigate = useNavigate();
   const { register, handleSubmit, formState } = useForm<LoginForm>();
   const { errors, isSubmitting } = formState;
+
+  useEffect(() => {
+    if (isLoginComplete) {
+      navigate('/', { replace: true });
+    }
+  }, [navigate, isLoginComplete]);
 
   const requestLogin = async (data: LoginForm) => {
     const res = await YSSAPi.login(data);
     if (res) {
       navigate('/', { replace: true });
+      setIsLoginCompleted(true);
       return;
     }
     setIsLoginFailed(true);
@@ -52,7 +64,7 @@ function LoginPage() {
         <input
           {...register('pw', { required: '비밀번호를 입력하세요' })}
           placeholder="비밀번호"
-          // type="password"
+          type="password"
           onFocus={() => onFocusOnInputBox()}
         />
         <div className={cx('error', { hidden: !errors.pw })}>
