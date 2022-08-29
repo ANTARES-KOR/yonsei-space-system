@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import classNames from 'classnames/bind';
-import { useRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import { isLoginCompletedState } from '../../atom';
-import { LoginForm } from '../../interfaces';
+import useCheckLogin from '../../hooks/useCheckLogin';
 import styles from './LoginPage.module.scss';
+import { LoginForm } from '../../interfaces';
 import Button from '../../components/Button';
 import Loading from '../../components/Loading';
 import YSSAPi from '../../apis/index';
@@ -14,18 +15,12 @@ const cx = classNames.bind(styles);
 
 function LoginPage() {
   const [isLoginFailed, setIsLoginFailed] = useState<boolean | null>(null);
-  const [isLoginComplete, setIsLoginCompleted] = useRecoilState(
-    isLoginCompletedState,
-  );
+  const setIsLoginCompleted = useSetRecoilState(isLoginCompletedState);
   const navigate = useNavigate();
   const { register, handleSubmit, formState } = useForm<LoginForm>();
   const { errors, isSubmitting } = formState;
 
-  useEffect(() => {
-    if (isLoginComplete) {
-      navigate('/', { replace: true });
-    }
-  }, [navigate, isLoginComplete]);
+  useCheckLogin();
 
   const requestLogin = async (data: LoginForm) => {
     const res = await YSSAPi.login(data);

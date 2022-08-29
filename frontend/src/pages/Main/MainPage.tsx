@@ -1,25 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames/bind';
-import { Link, useNavigate } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
-import { isLoginCompletedState } from '../../atom';
+import { Link } from 'react-router-dom';
 import styles from './MainPage.module.scss';
 import Sidebar from '../../components/Sidebar';
 import Modal from '../../components/Modal';
 import Button from '../../components/Button';
+import useCheckLogin from '../../hooks/useCheckLogin';
 
 const cx = classNames.bind(styles);
 
 function MainPage() {
-  const navigate = useNavigate();
+  useCheckLogin();
   const [modal, setModal] = useState(false);
-  const isLoginCompleted = useRecoilValue(isLoginCompletedState);
-
-  useEffect(() => {
-    if (!isLoginCompleted) {
-      navigate('/login', { replace: true });
-    }
-  }, [navigate, isLoginCompleted]);
 
   const toggleModal = () => {
     setModal(!modal);
