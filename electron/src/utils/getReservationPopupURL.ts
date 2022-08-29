@@ -1,4 +1,4 @@
-import { URLs } from "../../../core/constants";
+import { URLs } from "../constants";
 
 interface ReservationPopupURLProps {
   room_uid: string;
