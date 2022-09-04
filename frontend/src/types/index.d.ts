@@ -1,8 +1,10 @@
+/* eslint-disable no-unused-vars */
 export {};
 
 declare global {
-  // eslint-disable-next-line no-unused-vars
   interface Window {
-    YonseiSpaceSystem: any;
+    YonseiSpaceSystem: {
+      login: (id: string, pw: string) => Promise<boolean>;
+    };
   }
 }
