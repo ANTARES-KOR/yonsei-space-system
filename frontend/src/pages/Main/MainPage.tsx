@@ -5,11 +5,14 @@ import styles from './MainPage.module.scss';
 import Sidebar from '../../components/Sidebar';
 import Modal from '../../components/Modal';
 import Button from '../../components/Button';
+import useCheckLogin from '../../hooks/useCheckLogin';
 
 const cx = classNames.bind(styles);
 
 function MainPage() {
+  useCheckLogin();
   const [modal, setModal] = useState(false);
+
   const toggleModal = () => {
     setModal(!modal);
   };
