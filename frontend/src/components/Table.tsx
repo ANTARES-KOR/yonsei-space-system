@@ -10,7 +10,7 @@ function Table() {
     <div className={styles.table}>
       <Column isLabelColumn />
       {reservationStatus.map((item) => (
-        <Column data={item} />
+        <Column data={item} key={item.date} />
       ))}
     </div>
   );

@@ -25,10 +25,10 @@ function Column({ data, isLabelColumn }: Props) {
       <div className={cx('column-header')}>{data?.date}</div>
       <div className={cx('column-rows-container')}>
         {data?.reservations.map((item) => (
-          <SingleReservationInfo data={item} />
+          <SingleReservationInfo data={item} key={item.id} />
         ))}
         {timeSlots.map((item) => (
-          <div className={cx('column-row')}>
+          <div className={cx('column-row')} key={item}>
             {isLabelColumn && item % 2 === 0 && `${item / 2 + 6}:00`}
           </div>
         ))}
