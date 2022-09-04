@@ -4,9 +4,13 @@ export interface LoginForm {
 }
 
 export interface SingleReservation {
-  startTime: string;
-  endTime: string;
-  eventName: string;
+  id: string;
+  title: string;
+  start: string;
+  end: string;
+  date: string;
+  url: string;
+  allDay: boolean;
 }
 
 export interface SingleReservationStatus {

@@ -9,16 +9,14 @@ interface Props {
 
 function SingleReservationInfo({ data }: Props) {
   const style = {
-    top: `${calReservationDivPosition(data?.startTime)}rem`,
-    height: `${calReservationDivHeight(data?.startTime, data?.endTime)}rem`,
+    top: `${calReservationDivPosition(data?.start)}rem`,
+    height: `${calReservationDivHeight(data?.start, data?.end)}rem`,
   };
 
   return (
     <div className={styles.container} style={style}>
-      <div
-        className={styles.header}
-      >{`${data?.startTime}-${data?.endTime}`}</div>
-      <div className={styles.content}>{data?.eventName}</div>
+      <div className={styles.header}>{`${data?.start}-${data?.end}`}</div>
+      <div className={styles.content}>{data?.title}</div>
     </div>
   );
 }
