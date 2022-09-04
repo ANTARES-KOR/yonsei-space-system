@@ -15,7 +15,7 @@ export class YonseiSpaceSystem {
 
   init = async () => {
     this.browser = await puppeteer.launch({
-      headless: false,
+      headless: true,
       defaultViewport: {
         width: 1920,
         height: 1080,
