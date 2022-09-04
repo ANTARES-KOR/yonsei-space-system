@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import classNames from 'classnames/bind';
@@ -14,10 +14,9 @@ import YSSAPi from '../../apis/index';
 const cx = classNames.bind(styles);
 
 function LoginPage() {
-  const [isLoginFailed, setIsLoginFailed] = useState<boolean | null>(null);
   const setIsLoginCompleted = useSetRecoilState(isLoginCompletedState);
   const navigate = useNavigate();
-  const { register, handleSubmit, formState } = useForm<LoginForm>();
+  const { register, setError, handleSubmit, formState } = useForm<LoginForm>();
   const { errors, isSubmitting } = formState;
 
   useCheckLogin();
@@ -29,11 +28,11 @@ function LoginPage() {
       setIsLoginCompleted(true);
       return;
     }
-    setIsLoginFailed(true);
-  };
-
-  const onFocusOnInputBox = () => {
-    setIsLoginFailed(null);
+    setError('id', {
+      types: {
+        loginFailed: '아이디 혹은 비밀번호를 다시 확인해 주세요.',
+      },
+    });
   };
 
   return (
@@ -46,30 +45,23 @@ function LoginPage() {
           {...register('id', {
             required: '아이디를 입력하세요.',
             pattern: {
-              value: /[0-9]{10}/,
+              value: /^[0-9]{10}$/g,
               message: '올바른 아이디를 입력하세요.',
             },
           })}
+          type="text"
           placeholder="학번 10자리"
-          onFocus={() => onFocusOnInputBox()}
         />
-        <div className={cx('error', { hidden: !errors.id })}>
-          {errors.id?.message}
-        </div>
+        <div className={cx('error')}>{errors.id?.message}</div>
         <input
           {...register('pw', { required: '비밀번호를 입력하세요' })}
           placeholder="비밀번호"
           type="password"
-          onFocus={() => onFocusOnInputBox()}
         />
-        <div className={cx('error', { hidden: !errors.pw })}>
-          {errors.pw?.message}
-        </div>
+        <div className={cx('error')}>{errors.pw?.message}</div>
         <Button label="로그인" fullWidth />
       </form>
-      <div className={cx('error', 'red', { hidden: !isLoginFailed })}>
-        아이디 혹은 비밀번호를 다시 확인해 주세요.
-      </div>
+      <div className={cx('error', 'red')}>{errors.id?.types?.loginFailed}</div>
     </div>
   );
 }
