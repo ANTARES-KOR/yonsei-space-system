@@ -1,8 +1,9 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import classNames from 'classnames/bind';
 import styles from './Column.module.scss';
 import { SingleReservationStatus } from '../interfaces';
 import SingleReservationInfo from './SingleReservationInfo';
+import { timeslotsArr } from '../constants';
 
 const cx = classNames.bind(styles);
 
@@ -12,14 +13,6 @@ interface Props {
 }
 
 function Column({ data, isLabelColumn }: Props) {
-  const timeSlots = useMemo(
-    () =>
-      Array(32)
-        .fill(0)
-        .map((v, i) => i),
-    [],
-  );
-
   return (
     <div className={cx('column', { 'label-column': isLabelColumn })}>
       <div className={cx('column-header')}>{data?.date}</div>
@@ -27,7 +20,7 @@ function Column({ data, isLabelColumn }: Props) {
         {data?.reservations.map((item) => (
           <SingleReservationInfo data={item} key={item.id} />
         ))}
-        {timeSlots.map((item) => (
+        {timeslotsArr.map((item) => (
           <div className={cx('column-row')} key={item}>
             {isLabelColumn && item % 2 === 0 && `${item / 2 + 6}:00`}
           </div>
