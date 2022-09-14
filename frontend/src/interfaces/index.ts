@@ -3,7 +3,7 @@ export interface LoginForm {
   pw: string;
 }
 
-export interface SingleReservation {
+export interface ReservationInfo {
   id: string;
   title: string;
   start: string;
@@ -13,7 +13,7 @@ export interface SingleReservation {
   allDay: boolean;
 }
 
-export interface SingleReservationStatus {
+export interface ReservationsPerDay {
   date: string;
-  reservations: SingleReservation[];
+  reservations: ReservationInfo[];
 }

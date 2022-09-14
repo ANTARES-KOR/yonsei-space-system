@@ -1,14 +1,14 @@
 import React from 'react';
 import classNames from 'classnames/bind';
 import styles from './Column.module.scss';
-import { SingleReservationStatus } from '../interfaces';
+import { ReservationsPerDay } from '../interfaces';
 import SingleReservationInfo from './SingleReservationInfo';
 import { timeslotsArr } from '../constants';
 
 const cx = classNames.bind(styles);
 
 interface Props {
-  data?: SingleReservationStatus | undefined;
+  data?: ReservationsPerDay | undefined;
   isLabelColumn?: boolean;
 }
 

@@ -1,12 +1,12 @@
 import { atom } from 'recoil';
-import { SingleReservationStatus } from './interfaces';
+import { ReservationsPerDay } from './interfaces';
 
 const selectState = atom<string | null>({
   key: 'selectState',
   default: null,
 });
 
-const reservationStatusState = atom<SingleReservationStatus[]>({
+const reservationStatusState = atom<ReservationsPerDay[]>({
   key: 'reservationStatusState',
   default: [],
 });
