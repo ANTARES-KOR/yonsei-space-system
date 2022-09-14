@@ -1,0 +1,21 @@
+@import '../index.module.scss';
+
+$single-row-height: 0.7rem;
+$single-row-width: 18rem;
+
+.column {
+  width: $single-row-width;
+  &.label-column {
+    width: calc($single-row-width/2);
+  }
+}
+
+.column-rows-container {
+  position: relative;
+}
+
+.column-header,
+.column-row {
+  height: calc($single-row-height * 3);
+  outline: solid 0.05rem $gray;
+}

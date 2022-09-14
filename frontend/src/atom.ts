@@ -1,4 +1,15 @@
 import { atom } from 'recoil';
+import { SingleReservationStatus } from './interfaces';
+
+const selectState = atom<string | null>({
+  key: 'selectState',
+  default: null,
+});
+
+const reservationStatusState = atom<SingleReservationStatus[]>({
+  key: 'reservationStatusState',
+  default: [],
+});
 
 const sessionStorageEffect =
   (key: string) =>
@@ -18,9 +29,4 @@ const isLoginCompletedState = atom({
   effects: [sessionStorageEffect('isLoginCompleted')],
 });
 
-const selectState = atom<string | null>({
-  key: 'selectState',
-  default: null,
-});
-
-export { selectState, isLoginCompletedState };
+export { selectState, reservationStatusState, isLoginCompletedState };
