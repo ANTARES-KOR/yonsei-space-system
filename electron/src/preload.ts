@@ -1,8 +1,11 @@
+import { BuildingUID, RoomUID } from "./types";
 import { contextBridge, ipcRenderer } from "electron";
-import { BuildingName } from "./constants";
 
 contextBridge.exposeInMainWorld("YonseiSpaceSystem", {
   login: (id: string, pw: string) => ipcRenderer.invoke("login", id, pw),
-  getRoomReservations: (building: BuildingName, room: string) =>
-    ipcRenderer.invoke("getRoomReservations", building, room),
+
+  getRoomReservations: (building_uid: BuildingUID, room_uid: RoomUID) =>
+    ipcRenderer.invoke("getRoomReservations", building_uid, room_uid),
+
+  getBuildingRoomList: () => ipcRenderer.invoke("getBuildingRoomList"),
 });

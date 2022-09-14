@@ -1,5 +1,5 @@
 import puppeteer from "puppeteer";
-import { RoomNo, BuildingNo } from "../constants";
+import { BuildingUID, RoomUID } from "../types";
 import { loginToYonseiSpaceSystem } from "../utils";
 import { getUpcomingWeeklyReservation } from "../utils/getUpcomingWeeklyReservation";
 import groupReservationsByDate from "../utils/groupReservationsByDate";
@@ -34,23 +34,13 @@ export class YonseiSpaceSystem {
     }
   };
 
-  private _getBuildingRoomInfo = (building: string, room: string) => {
-    const building_no = BuildingNo[building];
-    const room_no = RoomNo[building][room];
-
-    if (!building_no || !room_no) throw new Error(`${building} ${room} is not found`);
-
-    return { building_no, room_no };
-  };
-
-  getRoomReservations = async (building: string, room: string) => {
+  getRoomReservations = async (building_uid: BuildingUID, room_uid: RoomUID) => {
     try {
-      const { building_no, room_no } = this._getBuildingRoomInfo(building, room);
       if (!this.browser) throw new Error("Browser is not initialized");
       const reservations = await getUpcomingWeeklyReservation(this.browser, {
         numOfWeek: 3,
-        building_no,
-        room_no,
+        building_uid,
+        room_uid,
       });
 
       return groupReservationsByDate(reservations);
