@@ -1,4 +1,4 @@
-export const RoomInfo = [
+export const BuildingRoomList = [
   {
     building_name: "제 1공학관",
     building_uid: 102,

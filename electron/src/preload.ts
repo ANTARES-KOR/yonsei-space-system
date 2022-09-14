@@ -7,5 +7,5 @@ contextBridge.exposeInMainWorld("YonseiSpaceSystem", {
   getRoomReservations: (building_uid: BuildingUID, room_uid: RoomUID) =>
     ipcRenderer.invoke("getRoomReservations", building_uid, room_uid),
 
-  getRoomList: () => ipcRenderer.invoke("getRoomList"),
+  getBuildingRoomList: () => ipcRenderer.invoke("getBuildingRoomList"),
 });

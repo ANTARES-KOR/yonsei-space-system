@@ -1,4 +1,4 @@
-import { RoomInfo } from "./constants";
+import { BuildingRoomList } from "./constants";
 // Modules to control application life and create native browser window
 import { app, BrowserWindow, ipcMain } from "electron";
 import path from "path";
@@ -38,8 +38,8 @@ app.whenReady().then(async () => {
     return result;
   });
 
-  ipcMain.handle("getRoomList", async () => {
-    return RoomInfo;
+  ipcMain.handle("getBuildingRoomList", async () => {
+    return BuildingRoomList;
   });
 
   app.on("activate", function () {
