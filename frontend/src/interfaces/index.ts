@@ -1,3 +1,5 @@
+import { RoomUID } from '../types';
+
 export interface LoginForm {
   id: string;
   pw: string;
@@ -16,4 +18,15 @@ export interface ReservationInfo {
 export interface ReservationsPerDay {
   date: string;
   reservations: ReservationInfo[];
+}
+
+export interface LectureRoomInfo {
+  room_name: string;
+  room_uid: RoomUID;
+}
+
+export interface LectureRoomsPerBuilding {
+  building_name: string;
+  building_uid: number;
+  rooms: LectureRoomInfo[];
 }

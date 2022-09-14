@@ -4,12 +4,13 @@ import classNames from 'classnames/bind';
 import { useRecoilState } from 'recoil';
 import { selectState } from '../atom';
 import styles from './SidebarItem.module.scss';
+import { LectureRoomInfo } from '../interfaces';
 
 const cx = classNames.bind(styles);
 
 interface Props {
   label: string;
-  children?: string[];
+  children?: LectureRoomInfo[];
 }
 
 function SidebarItem({ label, children }: Props) {
@@ -50,7 +51,7 @@ function SidebarItem({ label, children }: Props) {
       {children && open && (
         <ul>
           {children.map((item) => (
-            <SidebarItem label={item} key={item} />
+            <SidebarItem label={item.room_name} key={item.room_name} />
           ))}
         </ul>
       )}
