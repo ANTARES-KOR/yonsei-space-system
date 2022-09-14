@@ -4,6 +4,14 @@ import { app, BrowserWindow, ipcMain } from "electron";
 import path from "path";
 import { YonseiSpaceSystem } from "./module/YonseiSpaceSystem";
 import { BuildingUID, RoomUID } from "./types";
+import updater from "update-electron-app";
+import logger from "electron-log";
+
+updater({
+  repo: "ANTARES-KOR/yonsei-space-system",
+  updateInterval: "1 hour",
+  logger,
+});
 
 function createWindow() {
   // Create the browser window.
