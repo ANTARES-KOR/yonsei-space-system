@@ -1,13 +1,13 @@
 import { format } from "date-fns";
-import { Browser, Page } from "puppeteer";
+import { Browser } from "puppeteer";
 import { URLs } from "../constants";
-import { ParsedReservation, Reservation } from "../types";
+import { BuildingUID, ParsedReservation, Reservation, RoomUID } from "../types";
 import uniqueBy from "./uniqueBy";
 import { omit } from "radash";
 
 export const getUpcomingWeeklyReservation = async (
   browser: Browser,
-  option: { numOfWeek: number; building_no: number; room_no: number }
+  option: { numOfWeek: number; building_uid: BuildingUID; room_uid: RoomUID }
 ): Promise<ParsedReservation[]> => {
   const page = await browser.newPage();
 
@@ -18,10 +18,10 @@ export const getUpcomingWeeklyReservation = async (
   // 신촌캠퍼스 선택
   await page.select("#uCampus", "SC");
   // 건물 조회
-  await page.select("#uBuilding", option.building_no.toString());
+  await page.select("#uBuilding", option.building_uid.toString());
   // 강의실 선택
-  await page.waitForSelector("option[value='" + option.room_no + "']");
-  await page.select("#uRoom", option.room_no.toString());
+  await page.waitForSelector("option[value='" + option.room_uid + "']");
+  await page.select("#uRoom", option.room_uid.toString());
   // 조회 버튼 클릭
   await page.click("#ys_memberarea > form > a.button.icon.search");
 

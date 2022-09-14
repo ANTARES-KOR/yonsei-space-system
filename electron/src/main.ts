@@ -1,7 +1,9 @@
+import { RoomInfo } from "./constants";
 // Modules to control application life and create native browser window
 import { app, BrowserWindow, ipcMain } from "electron";
 import path from "path";
 import { YonseiSpaceSystem } from "./module/YonseiSpaceSystem";
+import { BuildingUID, RoomUID } from "./types";
 
 function createWindow() {
   // Create the browser window.
@@ -30,10 +32,14 @@ app.whenReady().then(async () => {
     return result;
   });
 
-  ipcMain.handle("getRoomReservations", async (event, ...args) => {
-    const [building, room] = args;
-    const result = await yonseiSpaceSystem.getRoomReservations(building, room);
+  ipcMain.handle("getRoomReservations", async (event, ...args: [BuildingUID, RoomUID]) => {
+    const [building_uid, room_uid] = args;
+    const result = await yonseiSpaceSystem.getRoomReservations(building_uid, room_uid);
     return result;
+  });
+
+  ipcMain.handle("getRoomList", async () => {
+    return RoomInfo;
   });
 
   app.on("activate", function () {

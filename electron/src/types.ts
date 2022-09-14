@@ -27,3 +27,6 @@ export type ParsedReservation = {
   allDay: boolean;
   date: string;
 };
+
+export type RoomUID = number;
+export type BuildingUID = number;
