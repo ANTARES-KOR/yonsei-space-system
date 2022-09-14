@@ -12,7 +12,9 @@
   "dependencies": {
     "@yonsei-space-scraper/frontend": "workspace:*",
     "date-fns": "^2.29.1",
-    "radash": "^7.0.0"
+    "electron-log": "^4.4.8",
+    "radash": "^7.0.0",
+    "update-electron-app": "^2.0.1"
   },
   "devDependencies": {
     "dotenv": "^16.0.1",
