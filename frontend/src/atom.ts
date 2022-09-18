@@ -1,15 +1,6 @@
-import { atom } from 'recoil';
-import { ReservationsPerDay } from './interfaces';
-
-const selectState = atom<string | null>({
-  key: 'selectState',
-  default: null,
-});
-
-const reservationStatusState = atom<ReservationsPerDay[]>({
-  key: 'reservationStatusState',
-  default: [],
-});
+import { atom, selector } from 'recoil';
+import YSSApi from './apis';
+import { ReservationsPerDay, GetReservationForm } from './interfaces/index';
 
 const sessionStorageEffect =
   (key: string) =>
@@ -29,4 +20,25 @@ const isLoginCompletedState = atom({
   effects: [sessionStorageEffect('isLoginCompleted')],
 });
 
-export { selectState, reservationStatusState, isLoginCompletedState };
+const lectureRoomChoiceState = atom<GetReservationForm | null>({
+  key: 'lectureRoomChoiceState',
+  default: null,
+});
+
+const reservationStatusState = selector<ReservationsPerDay[] | null>({
+  key: 'reservationStatusState',
+  get: async ({ get }) => {
+    const chosenLectureRoom = get(lectureRoomChoiceState);
+    if (chosenLectureRoom != null) {
+      const res = await YSSApi.getReservations(chosenLectureRoom);
+      return res;
+    }
+    return null;
+  },
+});
+
+export {
+  isLoginCompletedState,
+  lectureRoomChoiceState,
+  reservationStatusState,
+};

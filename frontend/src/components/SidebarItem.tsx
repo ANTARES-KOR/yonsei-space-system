@@ -1,35 +1,56 @@
+/* eslint-disable camelcase */
 import React, { useState } from 'react';
+import { useRecoilState } from 'recoil';
 import { AiOutlineUp, AiOutlineDown } from 'react-icons/ai';
 import classNames from 'classnames/bind';
-import { useRecoilState } from 'recoil';
-import { selectState } from '../atom';
 import styles from './SidebarItem.module.scss';
-import { LectureRoomInfo } from '../interfaces';
+import { lectureRoomChoiceState } from '../atom';
+import { LectureRoomsPerBuilding, LectureRoomInfo } from '../interfaces';
 
 const cx = classNames.bind(styles);
 
+interface SidebarLectureRoomInfo extends LectureRoomInfo {
+  building_uid: number;
+}
+
 interface Props {
-  label: string;
+  data: LectureRoomsPerBuilding | SidebarLectureRoomInfo;
   children?: LectureRoomInfo[];
 }
 
-function SidebarItem({ label, children }: Props) {
+function SidebarItem({ data, children }: Props) {
   const [open, setOpen] = useState(false);
-  const [select, setSelect] = useRecoilState(selectState);
+  const [lectureRoomChoice, setLectureRoomChoice] = useRecoilState(
+    lectureRoomChoiceState,
+  );
 
-  const openSubMenu = () => {
+  const toggleSubMenu = () => {
     setOpen(!open);
   };
 
-  const selectClassroom = () => {
-    setSelect(label);
+  const updateLectureRoomChoice = () => {
+    if ('room_name' in data) {
+      setLectureRoomChoice({
+        building_uid: data.building_uid,
+        room_uid: data.room_uid,
+      });
+    }
   };
 
-  const isSelected = () => {
-    if (children) {
-      return children.find((item) => item === select);
+  const isThisBuildingSelected = () => {
+    if ('building_name' in data) {
+      if (lectureRoomChoice?.building_uid === data.building_uid) {
+        return true;
+      }
     }
-    return select === label;
+    return false;
+  };
+
+  const itemLabel = () => {
+    if ('building_name' in data) {
+      return data.building_name;
+    }
+    return data.room_name;
   };
 
   return (
@@ -37,22 +58,28 @@ function SidebarItem({ label, children }: Props) {
       className={cx(
         { Building: children },
         { Room: !children },
-        { selected: isSelected() },
+        { selected: isThisBuildingSelected() },
       )}
     >
       <button
-        onClick={children ? openSubMenu : selectClassroom}
+        onClick={children ? toggleSubMenu : updateLectureRoomChoice}
         type="button"
         className={cx('sidebar-item')}
       >
-        {label}
+        {itemLabel()}
         {children && (open ? <AiOutlineUp /> : <AiOutlineDown />)}
       </button>
       {children && open && (
         <ul>
-          {children.map((item) => (
-            <SidebarItem label={item.room_name} key={item.room_name} />
-          ))}
+          {children.map((item) => {
+            const { building_uid } = data;
+            return (
+              <SidebarItem
+                data={{ ...item, building_uid }}
+                key={item.room_name}
+              />
+            );
+          })}
         </ul>
       )}
     </li>
