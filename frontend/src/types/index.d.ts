@@ -7,7 +7,7 @@ declare global {
   interface Window {
     YonseiSpaceSystem: {
       login: (id: string, pw: string) => Promise<boolean>;
-      getReservations: (
+      getRoomReservations: (
         building_uid: BuildingUID,
         room_uid: RoomUID,
       ) => Promise<ReservationsPerDay[]>;

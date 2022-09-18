@@ -1,8 +1,13 @@
-import { RoomUID } from '../types';
+import { BuildingUID, RoomUID } from '../types';
 
 export interface LoginForm {
   id: string;
   pw: string;
+}
+
+export interface GetReservationForm {
+  building_uid: BuildingUID;
+  room_uid: RoomUID;
 }
 
 export interface ReservationInfo {
