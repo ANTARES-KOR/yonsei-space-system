@@ -39,9 +39,10 @@ function SidebarItem({ data, children }: Props) {
 
   const isThisBuildingSelected = () => {
     if ('building_name' in data) {
-      if (lectureRoomChoice?.building_uid === data.building_uid) {
-        return true;
-      }
+      return lectureRoomChoice?.building_uid === data.building_uid;
+    }
+    if ('room_name' in data) {
+      return lectureRoomChoice?.room_uid === data.room_uid;
     }
     return false;
   };
