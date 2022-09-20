@@ -30,10 +30,19 @@ function SidebarItem({ data, children }: Props) {
 
   const updateLectureRoomChoice = () => {
     if ('room_name' in data) {
-      setLectureRoomChoice({
+      const clickedLectureRoomInfo = {
         building_uid: data.building_uid,
         room_uid: data.room_uid,
-      });
+      };
+      if (
+        JSON.stringify(clickedLectureRoomInfo) !==
+        JSON.stringify(lectureRoomChoice)
+      ) {
+        setLectureRoomChoice({
+          building_uid: data.building_uid,
+          room_uid: data.room_uid,
+        });
+      }
     }
   };
 
