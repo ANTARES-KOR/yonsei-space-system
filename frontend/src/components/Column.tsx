@@ -17,7 +17,7 @@ function Column({ data, isLabelColumn }: Props) {
     <div className={cx('column', { 'label-column': isLabelColumn })}>
       <div className={cx('column-header')}>{data?.date}</div>
       <div className={cx('column-rows-container')}>
-        {data?.reservations.map((item) => (
+        {data?.reservations?.map((item) => (
           <SingleReservationInfo data={item} key={item.id} />
         ))}
         {timeslotsArr.map((item) => (

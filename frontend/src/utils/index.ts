@@ -1,3 +1,4 @@
+import { format } from 'date-fns';
 import { ReservationsPerDay } from '../interfaces';
 
 const calTimeLength = (startTime: string, endTime: string) => {
@@ -16,18 +17,49 @@ const calReservationDivHeight = (startTime: string, endTime: string) =>
 const calReservationDivPosition = (startTime: string) =>
   (calTimeLength('06:00', startTime) / 10) * 0.7;
 
-const filterSpecificDay = (day: number, res: ReservationsPerDay[]) => {
-  const saturdays = res.filter((item) => {
-    const [year, month, date] = item.date
-      .split('-')
-      .map((i: string) => Number(i));
-    return new Date(year, month - 1, date).getDay() === day;
+const memoizedUpcomingSaturdays = () => {
+  const cache: { [key: string]: string[] } = {};
+  return (numOfWeek: number, startDate: Date) => {
+    const key = JSON.stringify(startDate.getDay());
+    if (!cache[key]) {
+      const upcomingSaturdays: string[] = [];
+      for (let i = 0; i < 7 * numOfWeek; i += 1) {
+        if (startDate.getDay() === 6) {
+          upcomingSaturdays.push(format(startDate, 'yyyy-MM-dd'));
+        }
+        startDate.setDate(startDate.getDate() + 1);
+      }
+      cache[key] = upcomingSaturdays;
+      return upcomingSaturdays;
+    }
+    return cache[key];
+  };
+};
+
+const findUpcomingSaturdays = memoizedUpcomingSaturdays();
+
+const queryReservationsOnSpecificDates = (
+  res: ReservationsPerDay[],
+  dates: string[],
+) => {
+  const result: ReservationsPerDay[] = [];
+  dates.forEach((date) => {
+    const reservation = res.find((item) => item.date === date);
+    if (reservation) {
+      result.push(reservation);
+    } else {
+      result.push({
+        date,
+        reservations: null,
+      });
+    }
   });
-  return saturdays;
+  return result;
 };
 
 export {
   calReservationDivHeight,
   calReservationDivPosition,
-  filterSpecificDay,
+  findUpcomingSaturdays,
+  queryReservationsOnSpecificDates,
 };

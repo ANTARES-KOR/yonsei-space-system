@@ -22,7 +22,7 @@ export interface ReservationInfo {
 
 export interface ReservationsPerDay {
   date: string;
-  reservations: ReservationInfo[];
+  reservations: ReservationInfo[] | null;
 }
 
 export interface LectureRoomInfo {

@@ -1,7 +1,10 @@
 import { atom, selector } from 'recoil';
 import YSSApi from './apis';
 import { ReservationsPerDay, GetReservationForm } from './interfaces/index';
-import { filterSpecificDay } from './utils';
+import {
+  findUpcomingSaturdays,
+  queryReservationsOnSpecificDates,
+} from './utils';
 
 const sessionStorageEffect =
   (key: string) =>
@@ -32,8 +35,11 @@ const reservationStatusState = selector<ReservationsPerDay[] | null>({
     const chosenLectureRoom = get(lectureRoomChoiceState);
     if (chosenLectureRoom != null) {
       const res = await YSSApi.getReservations(chosenLectureRoom);
-      const saturdays = filterSpecificDay(6, res);
-      return saturdays;
+      const filteredRes = queryReservationsOnSpecificDates(
+        res,
+        findUpcomingSaturdays(2, new Date()),
+      );
+      return filteredRes;
     }
     return null;
   },
