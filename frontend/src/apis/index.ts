@@ -5,6 +5,10 @@ const YSSApi = {
     const res = await window.YonseiSpaceSystem.login(data.id, data.pw);
     return res;
   },
+  async getBuildingRoomList() {
+    const res = await window.YonseiSpaceSystem.getBuildingRoomList();
+    return res;
+  },
   async getReservations(data: GetReservationForm) {
     const res = await window.YonseiSpaceSystem.getRoomReservations(
       data.building_uid,
