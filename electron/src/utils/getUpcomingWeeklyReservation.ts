@@ -40,7 +40,7 @@ export const getUpcomingWeeklyReservation = async (
 
   page.close();
 
-  const deduplicated_reservations = uniqueBy(reservations, (reservation) => reservation.id);
+  const deduplicated_reservations = uniqueBy(reservations, (reservation) => reservation.start);
 
   const parsedReservations = deduplicated_reservations.map((reservation) => {
     const start_number = parseInt(reservation.start, 10) * 1000;

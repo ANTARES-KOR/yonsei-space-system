@@ -1,7 +1,6 @@
 import { ParsedReservation, Reservation } from "../types";
 
 const groupReservationsByDate = <T extends ParsedReservation>(arr: T[]) => {
-  console.log(arr);
   return arr.reduce<Array<{ date: string; reservations: T[] }>>((groups, reservation) => {
     const target_date = reservation.date;
 
