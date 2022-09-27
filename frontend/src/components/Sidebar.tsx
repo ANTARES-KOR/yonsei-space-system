@@ -6,7 +6,7 @@ function Sidebar() {
   return (
     <ul>
       {LectureRoomList.map((item) => (
-        <SidebarItem data={item} key={item.building_name}>
+        <SidebarItem data={item} key={item.building_name} isMainMenu>
           {item.rooms}
         </SidebarItem>
       ))}

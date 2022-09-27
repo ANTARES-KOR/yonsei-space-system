@@ -16,9 +16,10 @@ interface SidebarLectureRoomInfo extends LectureRoomInfo {
 interface Props {
   data: LectureRoomsPerBuilding | SidebarLectureRoomInfo;
   children?: LectureRoomInfo[];
+  isMainMenu: boolean;
 }
 
-function SidebarItem({ data, children }: Props) {
+function SidebarItem({ data, children, isMainMenu }: Props) {
   const [open, setOpen] = useState(false);
   const [lectureRoomChoice, setLectureRoomChoice] = useRecoilState(
     lectureRoomChoiceState,
@@ -34,10 +35,7 @@ function SidebarItem({ data, children }: Props) {
         building_uid: data.building_uid,
         room_uid: data.room_uid,
       };
-      if (
-        JSON.stringify(clickedLectureRoomInfo) !==
-        JSON.stringify(lectureRoomChoice)
-      ) {
+      if (clickedLectureRoomInfo.room_uid !== lectureRoomChoice?.room_uid) {
         setLectureRoomChoice({
           building_uid: data.building_uid,
           room_uid: data.room_uid,
@@ -66,18 +64,18 @@ function SidebarItem({ data, children }: Props) {
   return (
     <li
       className={cx(
-        { Building: children },
-        { Room: !children },
+        { 'main-menu': isMainMenu },
+        { 'sub-menu': !isMainMenu },
         { selected: isThisBuildingSelected() },
       )}
     >
       <button
-        onClick={children ? toggleSubMenu : updateLectureRoomChoice}
+        onClick={isMainMenu ? toggleSubMenu : updateLectureRoomChoice}
         type="button"
         className={cx('sidebar-item')}
       >
         {itemLabel()}
-        {children && (open ? <AiOutlineUp /> : <AiOutlineDown />)}
+        {isMainMenu && (open ? <AiOutlineUp /> : <AiOutlineDown />)}
       </button>
       {children && open && (
         <ul>
@@ -87,6 +85,7 @@ function SidebarItem({ data, children }: Props) {
               <SidebarItem
                 data={{ ...item, building_uid }}
                 key={item.room_name}
+                isMainMenu={false}
               />
             );
           })}
