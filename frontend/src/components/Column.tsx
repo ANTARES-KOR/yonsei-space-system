@@ -1,14 +1,14 @@
 import React from 'react';
 import classNames from 'classnames/bind';
 import styles from './Column.module.scss';
-import { SingleReservationStatus } from '../interfaces';
+import { ReservationsPerDay } from '../interfaces';
 import SingleReservationInfo from './SingleReservationInfo';
 import { timeslotsArr } from '../constants';
 
 const cx = classNames.bind(styles);
 
 interface Props {
-  data?: SingleReservationStatus | undefined;
+  data?: ReservationsPerDay | undefined;
   isLabelColumn?: boolean;
 }
 
@@ -17,7 +17,7 @@ function Column({ data, isLabelColumn }: Props) {
     <div className={cx('column', { 'label-column': isLabelColumn })}>
       <div className={cx('column-header')}>{data?.date}</div>
       <div className={cx('column-rows-container')}>
-        {data?.reservations.map((item) => (
+        {data?.reservations?.map((item) => (
           <SingleReservationInfo data={item} key={item.id} />
         ))}
         {timeslotsArr.map((item) => (

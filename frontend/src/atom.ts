@@ -1,15 +1,10 @@
-import { atom } from 'recoil';
-import { SingleReservationStatus } from './interfaces';
-
-const selectState = atom<string | null>({
-  key: 'selectState',
-  default: null,
-});
-
-const reservationStatusState = atom<SingleReservationStatus[]>({
-  key: 'reservationStatusState',
-  default: [],
-});
+import { atom, selector } from 'recoil';
+import YSSApi from './apis';
+import { ReservationsPerDay, GetReservationForm } from './interfaces/index';
+import {
+  findUpcomingSaturdays,
+  queryReservationsOnSpecificDates,
+} from './utils';
 
 const sessionStorageEffect =
   (key: string) =>
@@ -29,4 +24,29 @@ const isLoginCompletedState = atom({
   effects: [sessionStorageEffect('isLoginCompleted')],
 });
 
-export { selectState, reservationStatusState, isLoginCompletedState };
+const lectureRoomChoiceState = atom<GetReservationForm | null>({
+  key: 'lectureRoomChoiceState',
+  default: null,
+});
+
+const reservationStatusState = selector<ReservationsPerDay[] | null>({
+  key: 'reservationStatusState',
+  get: async ({ get }) => {
+    const chosenLectureRoom = get(lectureRoomChoiceState);
+    if (chosenLectureRoom != null) {
+      const res = await YSSApi.getReservations(chosenLectureRoom);
+      const filteredRes = queryReservationsOnSpecificDates(
+        res,
+        findUpcomingSaturdays(2, new Date()),
+      );
+      return filteredRes;
+    }
+    return null;
+  },
+});
+
+export {
+  isLoginCompletedState,
+  lectureRoomChoiceState,
+  reservationStatusState,
+};

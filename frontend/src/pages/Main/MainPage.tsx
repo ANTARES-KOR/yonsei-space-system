@@ -22,7 +22,9 @@ function MainPage() {
     <div className={cx('container')}>
       <Sidebar />
       <div>
-        <ReservationInfoTable />
+        <React.Suspense>
+          <ReservationInfoTable />
+        </React.Suspense>
         <Button label="예약하기" onClick={toggleModal} />
         <Link to="/login">login</Link>
       </div>

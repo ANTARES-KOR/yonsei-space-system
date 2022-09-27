@@ -45,6 +45,7 @@ importers:
       '@typescript-eslint/parser': ^5.32.0
       '@vitejs/plugin-react': ^2.0.0
       classnames: ^2.3.1
+      date-fns: ^2.29.1
       eslint: ^8.21.0
       eslint-config-airbnb: ^19.0.4
       eslint-config-prettier: ^8.5.0
@@ -66,6 +67,7 @@ importers:
       vite: ^3.0.0
     dependencies:
       classnames: 2.3.1
+      date-fns: 2.29.1
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-hook-form: 7.34.0_react@18.2.0

@@ -20,12 +20,12 @@ li {
   }
 }
 
-.Building {
+.main-menu {
   &.selected > button {
     color: $main-color;
   }
 }
-.Room {
+.sub-menu {
   &.selected {
     background: $main-color-light;
     button {

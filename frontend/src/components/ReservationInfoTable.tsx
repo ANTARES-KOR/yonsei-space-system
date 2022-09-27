@@ -9,7 +9,7 @@ function ReservationInfoTable() {
   return (
     <div className={styles.table}>
       <Column isLabelColumn />
-      {reservationStatus.map((item) => (
+      {reservationStatus?.map((item) => (
         <Column data={item} key={item.date} />
       ))}
     </div>

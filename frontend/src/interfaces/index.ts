@@ -1,9 +1,16 @@
+import { BuildingUID, RoomUID } from '../types';
+
 export interface LoginForm {
   id: string;
   pw: string;
 }
 
-export interface SingleReservation {
+export interface GetReservationForm {
+  building_uid: BuildingUID;
+  room_uid: RoomUID;
+}
+
+export interface ReservationInfo {
   id: string;
   title: string;
   start: string;
@@ -13,7 +20,18 @@ export interface SingleReservation {
   allDay: boolean;
 }
 
-export interface SingleReservationStatus {
+export interface ReservationsPerDay {
   date: string;
-  reservations: SingleReservation[];
+  reservations: ReservationInfo[] | null;
+}
+
+export interface LectureRoomInfo {
+  room_name: string;
+  room_uid: RoomUID;
+}
+
+export interface LectureRoomsPerBuilding {
+  building_name: string;
+  building_uid: number;
+  rooms: LectureRoomInfo[];
 }
