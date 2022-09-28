@@ -20,7 +20,9 @@ function MainPage() {
 
   return (
     <div className={cx('container')}>
-      <Sidebar />
+      <React.Suspense>
+        <Sidebar />
+      </React.Suspense>
       <div>
         <React.Suspense>
           <ReservationInfoTable />

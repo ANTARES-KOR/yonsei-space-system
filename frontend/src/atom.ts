@@ -1,6 +1,10 @@
 import { atom, selector } from 'recoil';
 import YSSApi from './apis';
-import { ReservationsPerDay, GetReservationForm } from './interfaces/index';
+import {
+  ReservationsPerDay,
+  GetReservationForm,
+  LectureRoomsPerBuilding,
+} from './interfaces/index';
 import {
   findUpcomingSaturdays,
   queryReservationsOnSpecificDates,
@@ -45,8 +49,17 @@ const reservationStatusState = selector<ReservationsPerDay[] | null>({
   },
 });
 
+const lectureRoomsListState = selector<LectureRoomsPerBuilding[]>({
+  key: 'lectureRoomsListState',
+  get: async () => {
+    const res = await YSSApi.getBuildingRoomList();
+    return res;
+  },
+});
+
 export {
   isLoginCompletedState,
   lectureRoomChoiceState,
   reservationStatusState,
+  lectureRoomsListState,
 };
